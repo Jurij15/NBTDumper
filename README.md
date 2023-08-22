@@ -2,7 +2,7 @@
 A simple program that dumps NBT files into a folder-like structure
 
 # Demo
-soon
+![demo1.0gif](https://github.com/Jurij15/NBTDumper/blob/master/docs/demos/1.0-demo.gif)
 
 # How To Use
 - Download the [latest release](https://github.com/Jurij15/NBTDumper/releases)
