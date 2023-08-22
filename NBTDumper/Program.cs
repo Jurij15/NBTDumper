@@ -50,9 +50,29 @@ namespace NBTDumper
                 .CreateLogger();
             Log.Information("NBTDumper by Jurij15, Version: "+Version.VersionString);
 
-            GetPath();
+            try
+            {
+                GetPath();
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal("Failed to get file path. Error message: " + ex.Message);
+                Log.CloseAndFlush();
 
-            LoadDumper();
+                Console.ReadLine();
+            }
+
+            try
+            {
+                LoadDumper();
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal("An error occured while dumping. Error message: " + ex.Message);
+                Log.CloseAndFlush();
+
+                Console.ReadLine();
+            }
 
             Log.Information("Dumping Finished!");
 
@@ -93,6 +113,14 @@ namespace NBTDumper
                     if (tag.TagType == NbtTagType.Compound)
                     {
                         TagCompoundDumper.NbtCompoundTag(tag as NbtCompound, CurrentDir);
+                    }
+                    else if (tag.TagType == NbtTagType.List)
+                    {
+                        TagListDumper.NbtListTag(tag as NbtList, CurrentDir);
+                    }
+                    else
+                    {
+                        TagValueDumper.DumpValueTag(tag, CurrentDir);
                     }
                 }
             }

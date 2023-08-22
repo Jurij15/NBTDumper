@@ -8,6 +8,6 @@ namespace NBTDumper
 {
     public class Version
     {
-        public static string VersionString = "1.0";
+        public static string VersionString = "1.0.1";
     }
 }
